@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,500&display=swap"
+        rel="stylesheet">
+    <title>GeoTrack</title>
+    <style>
+        h1 {
+            text-align: center;
+            color: rgba(0, 14, 61, 0.706);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Bricolage Grotesque', sans-serif;
+        }
+
+        /* #myMap {
+            border-style: solid;
+            border-color: rgb(141, 141, 141);
+        } */
+
+        .headi {
+            background-color: rgb(205, 228, 249);
+            border-radius: 18px;
+            margin: 9px;
+            padding: 3px;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        function GetMap() {
+            var map = new Microsoft.Maps.Map('#myMap', {
+                credentials: ""
+            });
+
+            //Request the user's location
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var loc = new Microsoft.Maps.Location(
+                    position.coords.latitude,
+                    position.coords.longitude);
+
+                //Add a pushpin at the user's location.
+                var pin = new Microsoft.Maps.Pushpin(loc);
+                map.entities.push(pin);
+
+                //Center the map on the user's location.
+                map.setView({ center: loc, zoom: 15 });
+            });
+        }
+
+
+        // canvas 
+
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
+
+</head>
+
+<body>
+    <div class="headi">
+        <h1>GeoTrack</h1>
+    </div>
+    <!-- grid layout -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div>
+                        <h3 style="text-align: center; padding: 1rem;">BingMap</h3>
+                    </div>
+                    <div id="myMap" class="map text-white p-4">
+                        <div id="myMap" style="position: relative;width:600px;height:400px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" style="background-color: #ffc107; padding: 2.3rem;">
+                    <div>
+                        <h3 style="text-align: center; background-color: #f7c42ad6;">SVG</h3>
+                    </div>
+                    <div class="svg bg-warning p-4" style="width:600px;height:400px;">
+                        <svg width="100%" height="100%">
+                            <rect x="0" y="0" width="100%" height="100%" fill="#ffc107" />
+                            <text x="50%" y="50%" dy=".35em" dominant-baseline="middle" text-anchor="middle"
+                                font-family="Arial, sans-serif" font-size="24" fill="#fff">
+                                <animate attributeName="x" from="50%" to="10%" dur="4s" repeatCount="indefinite" />
+                                Navigating the World with Precision
+                            </text>
+                        </svg>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card">
+                    <div class="canvas p-4">
+                        <canvas id="myCanvas" width="100%" height="200"></canvas>
+                        In today's interconnected world, accurate geolocation has become an essential part of our daily
+                        lives. The GeoTrack project aims to revolutionize the way we navigate and interact with the
+                        world around us. Through advanced mapping technologies, real-time tracking, and innovative data
+                        visualization, GeoTrack empowers individuals and businesses to make informed decisions, explore
+                        new horizons, and stay connected like never before. Join us on a journey where location meets
+                        innovation, and discover how GeoTrack is shaping the future of geolocation.
+                        <!-- <script>
+                            var c = document.getElementById("myCanvas");
+                            var ctx = c.getContext("2d");
+                            // Create gradient
+                            var grd = ctx.createLinearGradient(0, 0, 200, 0);
+                            grd.addColorStop(0, "lightblue");
+                            grd.addColorStop(1, "white");
+                            // Fill with gradient
+                            ctx.fillStyle = grd;
+                            ctx.fillRect(10, 10, 150, 80);
+                        </script> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
